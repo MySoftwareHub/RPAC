@@ -1,54 +1,43 @@
-
 // Use MultiStepper class to manage multiple steppers and make them all move to 
 // the same position at the same time for linear 2d (or 3d) motion.
 #include <AccelStepper.h>
 #include <MultiStepper.h>
-#include <LiquidCrystal.h>
+
+#include <SoftwareSerial.h>
 
 #define motorInterfaceType 4
 
-const int elec = 22;
+SoftwareSerial ArduinoSlave(50,51);
 
+String msg;
 
-//pas necessaires pour faire 1 tour (360°)
-const int stepsPerRevolution = 200;
+//Pas necessaires pour faire 1 tour (360°).
+const int stepsPerRevolution = 201;
 
-//variables qui contientent le nombre de pas à effectuer
+//Variables qui contientent le nombre de pas à effectuer.
 int steps; 
 int steps2;
 int steps3;
 int steps4;
   
-
-
-  //trame contenant l'info
- String frame =""; 
-
-
-
+//Trame contenant l'info.
+String frame =""; 
 
 AccelStepper stepper1 = AccelStepper(motorInterfaceType, 8,9,10,11);
 AccelStepper stepper2 = AccelStepper(motorInterfaceType, 3,4,5,6);
 AccelStepper stepper3 = AccelStepper(motorInterfaceType, 14,15,16,17);
 AccelStepper stepper4 = AccelStepper(motorInterfaceType, 18,19,20,21);
 
-// Up to 10 steppers can be handled as a group by MultiStepper
+//Jusqu'à 10 moteurs en parallèle.
 MultiStepper steppers;
 
 
-
-void setup() {
-
-  
+void setup()
+{
   Serial.begin(9600);
-
-
-lcd.begin(16, 2);
- lcd.setCursor(0,0); 
-
- 
-pinMode(elec,OUTPUT);
- 
+  ArduinoSlave.begin(9600);       
+  pinMode(13,OUTPUT);
+  
   pinMode(3,OUTPUT);
   pinMode(4,OUTPUT);
   pinMode(5,OUTPUT);
@@ -68,10 +57,9 @@ pinMode(elec,OUTPUT);
   pinMode(19,OUTPUT);
   pinMode(20,OUTPUT);
   pinMode(21,OUTPUT);
+
+  digitalWrite(13,LOW);
   
-
-
-
   digitalWrite(8,LOW);
   digitalWrite(9,LOW);
   digitalWrite(10,LOW);
@@ -94,22 +82,23 @@ pinMode(elec,OUTPUT);
 
   
   // Configure each stepper
-  stepper1.setMaxSpeed(300);
-  stepper2.setMaxSpeed(300);
-  stepper3.setMaxSpeed(300);
-  stepper4.setMaxSpeed(300);
+  stepper1.setMaxSpeed(200);
+  stepper2.setMaxSpeed(200);
+  stepper3.setMaxSpeed(200);
+  stepper4.setMaxSpeed(200);
   
-
   // Then give them to MultiStepper to manage
   steppers.addStepper(stepper1);
   steppers.addStepper(stepper2);
   steppers.addStepper(stepper3);
   steppers.addStepper(stepper4);
-
 }
-void loop() {
 
-int i ; 
+
+
+void loop() 
+{
+  int i ; 
     
   String motor_1 = "" ;
   String motor_2 = "" ;
@@ -131,7 +120,7 @@ int i ;
 
 while (Serial.available () > 0)  {
 
- frame+=(char)Serial.read();
+  frame+=(char)Serial.read();
   digitalWrite(8,LOW);
   digitalWrite(9,LOW);
   digitalWrite(10,LOW);
@@ -158,8 +147,8 @@ while (Serial.available () > 0)  {
 
 
     //Trame de texte
-//String frame = "M1+05.0/M2-05.0/M3+05.0/M4-05.0/1" ;
-               
+//frame = "M1+00.0/M2+00.0/M3+00.0/M4+00.0/1" ; //Pour test.
+          
     if(frame.length() == 33) {
       
       for(i = 0; i <= 6; i++) {
@@ -178,8 +167,8 @@ while (Serial.available () > 0)  {
         motor_4.concat(frame[i+24]) ;
         } 
 
-      data_elec = frame[32] ; 
-
+    data_elec = frame[32] ; 
+  data_elec=data_elec.toInt();
 
 
       if((motor_1[0] == 'M') && (motor_1[1] == '1')){
@@ -218,19 +207,20 @@ while (Serial.available () > 0)  {
             }
       }
 
-
       if(data_elec == "1"){
-      
-        digitalWrite(elec, HIGH);
-         
-          
+        
+        digitalWrite(13, HIGH);
+        ArduinoSlave.print(data_elec);
+       
       }
       else {
-        digitalWrite(elec, LOW);
-         
-         
+       
+        digitalWrite(13, LOW);
+        ArduinoSlave.print(data_elec);
+        
       }
-
+     //Serial.println(data_elec) ;
+     
       
 //tours à faire pour chaque moteur
   f_data_m1 = data_m1.toFloat() ;
@@ -266,12 +256,11 @@ long positions[4]; // Array of desired stepper positions
   positions[1] = steps2;
   positions[2] = steps3;
   positions[3] = steps4;
-  lcd.print(steps);
   steppers.moveTo(positions);   
   
   steppers.runSpeedToPosition(); // Blocks until all are in position
-  
-   digitalWrite(8,LOW);
+
+  digitalWrite(8,LOW);
   digitalWrite(9,LOW);
   digitalWrite(10,LOW);
   digitalWrite(11,LOW); 
@@ -296,7 +285,7 @@ long positions[4]; // Array of desired stepper positions
 
   //reboot
   frame="";
-  
+  data_elec="";
   
 }
 }
