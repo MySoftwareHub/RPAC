@@ -1,0 +1,80 @@
+%Case 1
+Pos1_1 = 'M1+02.3/M2+01.5/M3+02.4/M4+03.2/1'; %Position Ref to Case1
+Pos1_2 = 'M1-02.3/M2-01.5/M3-02.4/M4-03.2/0'; %Case1 to Position Ref
+
+%Case 2
+Pos2_1 = 'M1+02.7/M2+01.9/M3+01.9/M4+02.8/1'; %Position Ref to Case2
+Pos2_2 = 'M1-02.7/M2-01.9/M3-01.9/M4-02.8/0'; %Case2 to Position Ref
+
+%Case 3
+Pos3_1 = 'M1+03.2/M2+02.4/M3+01.5/M4+02.4/1'; %Position Ref to Case3
+Pos3_2 = 'M1-03.2/M2-02.4/M3-01.5/M4-02.4/0'; %Case3 to Position Ref
+
+%Case 4
+Pos4_1 = 'M1+01.8/M2+01.9/M3+02.8/M4+02.7/1'; %Position Ref to Case4
+Pos4_2 = 'M1-01.8/M2-01.9/M3-02.8/M4-02.7/0'; %Case4 to Position Ref
+
+%Case 5
+Pos5_1 = 'M1+02.3/M2+02.3/M3+02.3/M4+02.2/1'; %Position Ref to Case5
+Pos5_2 = 'M1-02.3/M2-02.3/M3-02.3/M4-02.2/0'; %Case5 to Position Ref
+
+%Case 6
+Pos6_1 = 'M1+02.8/M2+02.8/M3+01.9/M4+01.8/1'; %Position Ref to Case6
+Pos6_2 = 'M1-02.8/M2-02.8/M3-01.9/M4-01.8/0'; %Case6 to Position Ref
+
+%Case 7
+Pos7_1 = 'M1+01.4/M2+02.4/M3+03.3/M4+02.3/1'; %Position Ref to Case7
+Pos7_2 = 'M1-01.4/M2-02.4/M3-03.3/M4-02.3/0'; %Case7 to Position Ref
+
+%Case 8
+Pos8_1 = 'M1+01.9/M2+02.8/M3+02.8/M4+01.8/1'; %Position Ref to Case8
+Pos8_2 = 'M1-01.9/M2-02.8/M3-02.8/M4-01.8/0'; %Case8 to Position Ref
+
+%Case 9
+Pos9_1 = 'M1+02.4/M2+03.3/M3+02.4/M4+01.4/1'; %Position Ref to Case9
+Pos9_2 = 'M1-02.4/M2-03.3/M3-02.4/M4-01.4/0'; %Case9 to Position Ref
+
+
+PRefRond_1 = 'M1-01.1/M2-01.0/M3+01.4/M4+01.3/0';%Postion Ref to Position Ref Rond
+PRefRond_2 = 'M1+01.1/M2+01.0/M3-01.4/M4-01.3/1';%Postion Ref Rond to Position Ref
+
+
+PRefCroix_1 = 'M1+01.4/M2+01.4/M3-01.0/M4-01.0/0';%Postion Ref to Position Ref Croix
+PRefCroix_2 = 'M1-01.4/M2-01.4/M3+01.0/M4+01.0/1';%Postion Ref Croix to Position Ref
+
+
+%Pièce Rond 1
+Pos1_1R = 'M1+03.7/M2+01.8/M3+01.4/M4+03.0/0'; %Postion Ref Rond to Rond 1
+Pos1_2R = 'M1-03.7/M2-01.8/M3-01.4/M4-03.0/1'; %Rond 1 to Position Ref Rond
+
+%Pièce Rond 2
+Pos2_1R = 'M1+03.1/M2+02.2/M3+01.6/M4+02.4/0'; %Postion Ref Rond to Rond 2
+Pos2_2R = 'M1-03.1/M2-02.2/M3-01.6/M4-02.4/1';%Rond 2 to Position Ref Rond
+
+%Pièce Rond 3
+Pos3_1R = 'M1+02.5/M2+02.6/M3+02.0/M4+02.0/0'; %Postion Ref Rond to Rond 3
+Pos3_2R = 'M1-02.5/M2-02.6/M3-02.0/M4-02.0/1';%Rond 3 to Position Ref Rond
+
+%Pièce Rond 4
+Pos4_1R = 'M1+02.1/M2+03.1/M3+02.4/M4+01.6/0'; %Postion Ref Rond to Rond 4
+Pos4_2R = 'M1-02.1/M2-03.1/M3-02.4/M4-01.6/1';%Rond 4 to Position Ref Rond
+
+
+%Pièce Croix 1
+Pos1_1C = 'M1+02.9/M2+01.4/M3+01.8/M4+03.7/0'; %Postion Ref Croix to Croix 1
+Pos1_2C = 'M1-02.9/M2-01.4/M3-01.8/M4-03.7/1'; %Croix 1 to Position Ref Croix
+
+%Pièce Croix 2
+Pos2_1C = 'M1+02.4/M2+01.6/M3+02.1/M4+03.1/0'; %Postion Ref Croix to Croix 2
+Pos2_2C = 'M1-02.4/M2-01.6/M3-02.1/M4-03.1/1'; %Croix 2 to Position Ref Croix
+
+%Pièce Croix 3
+Pos3_1C = 'M1+02.0/M2+02.0/M3+02.6/M4+02.5/0'; %Postion Ref Croix to Croix 3
+Pos3_2C = 'M1-02.0/M2-02.0/M3-02.6/M4-02.5/1'; %Croix 3 to Position Ref Croix
+
+%Pièce Croix 4
+Pos4_1C = 'M1+01.6/M2+02.4/M3+03.1/M4+02.0/0'; %Postion Ref Croix to Croix 4
+Pos4_2C = 'M1-01.6/M2-02.4/M3-03.1/M4-02.0/1'; %Croix 4 to Position Ref Croix
+
+Electroaimant1 = 'M1+00.0/M2+00.0/M3+00.0/M4+00.0/1'; %Electroaimant on
+Electroaimant2 = 'M1+00.0/M2+00.0/M3+00.0/M4+00.0/0'; %Electroaimant off
